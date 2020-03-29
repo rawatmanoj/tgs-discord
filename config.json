@@ -1,6 +1,14 @@
 {
     "prefix": "_",
-    "token":"NjkzMDExNzQyMTUzNzY5MDEx.Xn79JA.Owvx-Fqf3avH1NEElBLAx4w-FDU",
-    "giphyToken":"omIKMplZ8zHbkDMocqZdCADCXhwdARrf"
+    "token":"NjkzMDExNzQyMTUzNzY5MDEx.XoBocQ.ol9goWHrzAp44Wu8tY5_VdbhusI",
+    "giphyToken":"omIKMplZ8zHbkDMocqZdCADCXhwdARrf",
+    "nodes":[
+        {
+            "host":"localhost",
+            "port": 8333,
+            "password":"youshallnotpass"
+
+        }
+    ]
 
 }

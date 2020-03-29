@@ -1,9 +1,18 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const {ErelaClient,Utils} = require('erela.js');
+const { prefix,token } = require('./config.json');
 
 const client = new Discord.Client();
-const cooldowns = new Discord.Collection();
+
+//console.log(nodes);
+const nodes = [
+    {
+        host: "localhost",
+        port: 8333,
+        password: "youshallnotpass",
+    }
+]
 
 client.commands = new Discord.Collection();
 
@@ -15,7 +24,32 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-	console.log('Ready!');
+    console.log('Ready!');
+    
+    client.music = new ErelaClient(client,nodes);
+
+    client.music.on("nodeConnect",()=>console.log("created a new node"));
+    console.log("1");
+    client.music.on("nodeError",console.log);
+    console.log("2");
+    client.music.on("trackStart",({textChannel},{title,duration})=> textChannel.send(`Now playing:**${title}** \` ${Utils.formatTime(duration,true)}\` `));
+    console.log("3");
+    client.music.on("queueEnd",player => {
+        player.textChannel.send("Queue has ended")
+        return client.music.players.destroy(player.guild.id);
+    });
+    console.log("4");
+    
+    client.levels = new Map()
+    .set("none",0.0)
+    .set("low",0.10)
+    .set("medium",0.15)
+    .set("high",0.25);
+
+    process.on('uncaughtException', function (err) {
+        console.log(err);
+    }); 
+
 });
 
 client.on('message', message => {
@@ -31,25 +65,6 @@ client.on('message', message => {
     const command = client.commands.get(commandName);
 
     
-
-
-
-    if (!cooldowns.has(command.name)) {
-        cooldowns.set(command.name, new Discord.Collection());
-    }
-    
-    const now = Date.now();
-    console.log(now);
-    const timestamps = cooldowns.get(command.name);
-    console.log(timestamps);
-    const cooldownAmount = (command.cooldown || 3) * 1000;
-    console.log(cooldownAmount);
-
-    
-    if (timestamps.has(message.author.id)) {
-        // ...
-    }
-    
 	try {
        // console.log(command);
         // client.commands.get(command).execute(message, args);
@@ -59,6 +74,13 @@ client.on('message', message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+
+
+//music
+
+
+
+
 
 client.login(token);
 
