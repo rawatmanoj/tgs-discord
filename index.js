@@ -5,7 +5,7 @@ const { prefix, token } = require('./config.json');
 
 const client = new Discord.Client();
 
-console.log(nodes);
+//console.log(nodes);
 const nodes = [
     {
         host: "localhost",
@@ -26,29 +26,29 @@ for (const file of commandFiles) {
 client.once('ready', () => {
     console.log('Ready!');
 
-    client.music = new ErelaClient(client, nodes);
+    // client.music = new ErelaClient(client, nodes);
 
-    client.music.on("nodeConnect", () => console.log("created a new node"));
-    console.log("1");
-    client.music.on("nodeError", console.log);
-    console.log("2");
-    client.music.on("trackStart", ({ textChannel }, { title, duration }) => textChannel.send(`Now playing:**${title}** \` ${Utils.formatTime(duration, true)}\` `));
-    console.log("3");
-    client.music.on("queueEnd", player => {
-        player.textChannel.send("Queue has ended")
-        return client.music.players.destroy(player.guild.id);
-    });
-    console.log("4");
+    // client.music.on("nodeConnect", () => console.log("created a new node"));
+    // console.log("1");
+    // client.music.on("nodeError", console.log);
+    // console.log("2");
+    // client.music.on("trackStart", ({ textChannel }, { title, duration }) => textChannel.send(`Now playing:**${title}** \` ${Utils.formatTime(duration, true)}\` `));
+    // console.log("3");
+    // client.music.on("queueEnd", player => {
+    //     player.textChannel.send("Queue has ended")
+    //     return client.music.players.destroy(player.guild.id);
+    // });
+    // console.log("4");
 
-    client.levels = new Map()
-        .set("none", 0.0)
-        .set("low", 0.10)
-        .set("medium", 0.15)
-        .set("high", 0.25);
+    // client.levels = new Map()
+    //     .set("none", 0.0)
+    //     .set("low", 0.10)
+    //     .set("medium", 0.15)
+    //     .set("high", 0.25);
 
-    process.on('uncaughtException', function (err) {
-        console.log(err);
-    });
+    // process.on('uncaughtException', function (err) {
+    //     console.log(err);
+    // });
 
 });
 

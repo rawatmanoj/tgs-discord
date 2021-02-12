@@ -1,14 +1,12 @@
 {
-    "prefix": "_",
-    "token":"NjkzMDExNzQyMTUzNzY5MDEx.XoBocQ.ol9goWHrzAp44Wu8tY5_VdbhusI",
-    "giphyToken":"omIKMplZ8zHbkDMocqZdCADCXhwdARrf",
-    "nodes":[
-        {
-            "host":"localhost",
-            "port": 8333,
-            "password":"youshallnotpass"
-
-        }
-    ]
-
+  "prefix": "_",
+  "token": "NjkzMDExNzQyMTUzNzY5MDEx.Xn23eg.pz5Tjaa6Ws1ayez9F2GtCobvxoE",
+  "giphyToken": "omIKMplZ8zHbkDMocqZdCADCXhwdARrf",
+  "nodes": [
+    {
+      "host": "localhost",
+      "port": 8333,
+      "password": "youshallnotpass"
+    }
+  ]
 }
