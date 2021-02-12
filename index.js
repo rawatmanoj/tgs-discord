@@ -1,7 +1,8 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 const { ErelaClient, Utils } = require('erela.js');
-const { prefix, token } = require('./config.json');
+const prefix = "_";
+//const {  token } = require('./config.json');
 
 const client = new Discord.Client();
 
@@ -82,7 +83,7 @@ client.on('message', message => {
 
 
 
-client.login(token);
+client.login(process.env.TOKEN);
 
 
 
